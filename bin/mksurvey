@@ -1,0 +1,16 @@
+#!perl
+use strictures 1;
+package
+  mksurvey;
+# ABSTRACT: A CLI tool for Survey, to create surveys
+
+use Survey;
+
+Survey->new_with_options->generate;
+
+__END__
+
+=head1 DESCRIPTION
+
+This is a tool to create surveys using Survey.
+
