@@ -6,7 +6,7 @@ use Test::Exception;
 use File::Temp 'tempfile';
 use YAML;
 
-use Survey;
+use Data::Survey;
 
 sub dump_to_file {
     my ( $fh, $content ) = @_;
@@ -20,8 +20,8 @@ sub open_and_dump {
     dump_to_file( $fh, $content );
 }
 
-my $survey = Survey->new();
-isa_ok( $survey, 'Survey'              );
+my $survey = Data::Survey->new();
+isa_ok( $survey, 'Data::Survey'        );
 can_ok( $survey, 'questions_from_file' );
 
 throws_ok { $survey->questions_from_file() } qr/^Must provide files/,
@@ -59,5 +59,5 @@ unlink $file;
 
 my $questions = $survey->questions;
 cmp_ok( scalar @{$questions}, '==', 1, 'Correct numbers of questions' );
-isa_ok( $questions->[0], 'Survey::Question::Open' );
+isa_ok( $questions->[0], 'Data::Survey::Question::Open' );
 

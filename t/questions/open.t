@@ -4,13 +4,13 @@ use strictures 1;
 use Test::More tests => 7;
 use Test::Exception;
 
-use Survey::Question::Open;
+use Data::Survey::Question::Open;
 
-throws_ok { my $q = Survey::Question::Open->new(); }
+throws_ok { my $q = Data::Survey::Question::Open->new(); }
     qr/^Attribute \(name\) is required/, 'Must get name to create';
 
-my $q = Survey::Question::Open->new( name => 'you here?' );
-isa_ok( $q, 'Survey::Question::Open' );
+my $q = Data::Survey::Question::Open->new( name => 'you here?' );
+isa_ok( $q, 'Data::Survey::Question::Open' );
 
 # checking attributes
 can_ok( $q, 'id', 'type', 'name', 'answer' );

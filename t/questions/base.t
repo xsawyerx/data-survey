@@ -3,7 +3,7 @@
 {
     package EG;
     use Moose;
-    with 'Survey::Question';
+    with 'Data::Survey::Question';
 }
 
 use strictures 1;

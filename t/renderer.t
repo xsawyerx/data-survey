@@ -5,19 +5,19 @@ use warnings;
 
 use Test::More tests => 8;
 use Test::Exception;
-use Survey;
-use Survey::Renderer;
+use Data::Survey;
+use Data::Survey::Renderer;
 use File::Temp 'tempfile';
 
 my $renderer;
-throws_ok { $renderer = Survey::Renderer->new() }
+throws_ok { $renderer = Data::Survey::Renderer->new() }
     qr/^Attribute \(template\) is required/,
     'Cannot create a Renderer without supplying template';
 
-lives_ok { $renderer = Survey::Renderer->new( template => 'eg.tt' ) }
+lives_ok { $renderer = Data::Survey::Renderer->new( template => 'eg.tt' ) }
     'Creating a Renderer with template works';
 
-isa_ok( $renderer, 'Survey::Renderer' );
+isa_ok( $renderer, 'Data::Survey::Renderer' );
 can_ok(
     $renderer,
     qw/template render tt tt_opts process_template template_error
@@ -27,11 +27,11 @@ can_ok(
 throws_ok { $renderer->render } qr/^I have no survey to render/,
     'Cannot render without survey';
 
-my $survey = Survey->new(
+my $survey = Data::Survey->new(
     questions => [
-        Survey::Question::Open->new( name => 'back'  ),
-        Survey::Question::Open->new( name => 'in'    ),
-        Survey::Question::Open->new( name => 'black' ),
+        Data::Survey::Question::Open->new( name => 'back'  ),
+        Data::Survey::Question::Open->new( name => 'in'    ),
+        Data::Survey::Question::Open->new( name => 'black' ),
     ],
 );
 
@@ -45,7 +45,7 @@ print {$fh} "[% FOREACH q IN questions %]\n[% q.name %]\n[% END %]\n"
     or die "Can't print to $file in test: $!\n";
 close $fh or die "Can't close $file in test: $!\n";
 
-$renderer = Survey::Renderer->new( template => $file, survey => $survey );
+$renderer = Data::Survey::Renderer->new( template => $file, survey => $survey );
 my $output = '';
 lives_ok { $output = $renderer->render } 'Can render when we have a survey';
 is( $output, "backinblack\n", 'Rendered template correctly' );
