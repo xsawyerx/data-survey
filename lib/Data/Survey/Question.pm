@@ -1,5 +1,5 @@
 use strictures 1;
-package Survey::Question;
+package Data::Survey::Question;
 # ABSTRACT: A base-class question for Survey
 
 use Moose::Role;

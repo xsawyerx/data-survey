@@ -1,5 +1,5 @@
 use strictures 1;
-package Survey::Renderer;
+package Data::Survey::Renderer;
 # ABSTRACT: Renderer for survey system
 
 use Carp;

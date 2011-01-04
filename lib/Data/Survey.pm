@@ -1,5 +1,5 @@
 use strictures 1;
-package Survey;
+package Data::Survey;
 # ABSTRACT: Survey system
 
 use Carp;

@@ -1,5 +1,5 @@
 use strictures 1;
-package Survey::Question::Open;
+package Data::Survey::Question::Open;
 # ABSTRACT: An open question
 
 use Moose;
